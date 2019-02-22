@@ -11,6 +11,11 @@
       <mat-cell *matCellDef="let user">{{user.username}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.email}}</mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let myRow; columns: columnsToDisplay"></mat-row>
   </mat-table>
