@@ -1,0 +1,16 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 400px;
+}
+
+mat-sidenav {
+  width: 200px;
+}
+
+.example-icon{
+  padding: 0 14px;
+  cursor: pointer;
+}

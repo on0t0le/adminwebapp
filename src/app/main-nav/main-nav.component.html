@@ -1,0 +1,20 @@
+<mat-sidenav-container class="sidenav-container" hasBackdrop="true">
+  <mat-sidenav #sidenav mode=push>
+    <mat-toolbar color="primary">
+      <span>My Application</span>
+    </mat-toolbar>
+    <ul>
+      <li>List1</li>
+      <li>List2</li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My Application</span>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

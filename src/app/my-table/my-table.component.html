@@ -1,0 +1,22 @@
+<mat-table [dataSource]="users" matSort class="mat-elevation-z8 table">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{user.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{user.username}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="company.name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Company</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{user.company.name}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let rowData; columns: columnsToDisplay"></mat-row>
+
+</mat-table>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[1, 5, 10]" showFirstLastButtons></mat-paginator>
