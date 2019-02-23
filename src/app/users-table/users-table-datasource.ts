@@ -2,11 +2,13 @@ import { DataSource } from '@angular/cdk/table';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { User } from '../models/User';
 import { UsersService } from '../services/users.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 export class UsersTableDatasource extends DataSource<any>{
     
     private usersSubject = new BehaviorSubject<User[]>([]);
+
+    public totalLength = 0;
 
     constructor(private usersService: UsersService){
         super();
@@ -22,8 +24,13 @@ export class UsersTableDatasource extends DataSource<any>{
 
     loadUsers(filter = '', sortDirection = 'asc', pageIndex = 0, pageSize=5){
         this.usersService.getUsers().pipe(
+            map(data =>{
+                console.log(data);
+                this.totalLength = data.length;
+                console.log(this.totalLength);
+            }),
             catchError(() => of([]))
-            ).subscribe(users => this.usersSubject.next(users));
+            ).subscribe((users: User[]) => {this.usersSubject.next(users)});
     }
 
 }
