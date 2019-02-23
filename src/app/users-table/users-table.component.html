@@ -19,4 +19,6 @@
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let myRow; columns: columnsToDisplay"></mat-row>
   </mat-table>
+  <mat-paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[1, 5, 20]">>
+  </mat-paginator>
 </div>

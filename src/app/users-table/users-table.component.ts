@@ -21,7 +21,7 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new UsersTableDatasource(this.usersService);
-    this.dataSource.loadUsers();
+    this.dataSource.loadUsers('',this.paginator);
   }
 
 }

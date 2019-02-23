@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject, of } from 'rxjs';
 import { User } from '../models/User';
 import { UsersService } from '../services/users.service';
 import { catchError, map } from 'rxjs/operators';
+import { MatPaginator } from '@angular/material';
 
 export class UsersTableDatasource extends DataSource<any>{
     
@@ -22,15 +23,25 @@ export class UsersTableDatasource extends DataSource<any>{
     disconnect() {        
     }
 
-    loadUsers(filter = '', sortDirection = 'asc', pageIndex = 0, pageSize=5){
+    loadUsers(filter = '', paginator: MatPaginator){
         this.usersService.getUsers().pipe(
             map(data =>{
+                
                 console.log(data);
                 this.totalLength = data.length;
                 console.log(this.totalLength);
+                paginator.length = data.length;
+
+                return data;
             }),
             catchError(() => of([]))
-            ).subscribe((users: User[]) => {this.usersSubject.next(users)});
+            ).subscribe((users: User[]) => 
+            {
+                console.log('Start to inser users');
+                this.usersSubject.next(users);
+                console.log('Users are inserted!');
+                console.log(users);
+            });
     }
 
 }
