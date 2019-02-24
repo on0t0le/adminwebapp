@@ -12,6 +12,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { UsersTableComponent } from './users-table/users-table.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
    declarations: [
@@ -34,7 +35,8 @@ import { UsersTableComponent } from './users-table/users-table.component';
       MatListModule,
       MatTableModule,
       MatPaginatorModule,
-      MatSortModule
+      MatSortModule,
+      AppRoutingModule
    ],
    providers: [],
    bootstrap: [
