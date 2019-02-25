@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '../services/users.service';
-import { UsersTableDatasource } from './users-table-datasource';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-users-table',
@@ -10,8 +10,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 })
 export class UsersTableComponent implements OnInit {
 
-  //dataSource = new UsersTableDatasource(this.usersService);
-  dataSource: UsersTableDatasource;
+  dataSource: any;
   columnsToDisplay = ['id', 'username', 'email'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -20,8 +19,11 @@ export class UsersTableComponent implements OnInit {
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.dataSource = new UsersTableDatasource(this.usersService);
-    this.dataSource.loadUsers('',this.paginator);
+    this.usersService.getUsers().subscribe(res =>{      
+      this.dataSource = new MatTableDataSource(res as User[]);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
 }
