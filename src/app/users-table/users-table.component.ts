@@ -26,4 +26,8 @@ export class UsersTableComponent implements OnInit {
     });
   }
 
+  onRowClick(row){
+    console.log('You click the row: ', row);
+  }
+
 }
